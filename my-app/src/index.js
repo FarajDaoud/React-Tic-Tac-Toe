@@ -25,26 +25,27 @@ class Board extends React.Component {
     );
   }
 
+  createBoard() {
+    let count = 0;
+    let rows = [];
+    for(let i=0; i < 3; i++){
+      let boxes = [];
+      for(let j=0; j < 3; j++){
+        boxes.push(this.renderSquare(count));
+        count++;
+      }
+      rows.push(<div className='board-row'>{boxes}</div>);
+    }
+    return rows;
+  }
+
   render() {
-    return (
+    return ( 
       <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
-      </div>
+        {this.createBoard()}
+      </div> 
     );
+      
   }
 }
 
@@ -97,9 +98,7 @@ class Game extends React.Component {
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
     const moves = history.map((step, move) => {
-                    const desc = move ?
-                      'Go to move #' + move + ' ' + gridLocation(history[move].moveLoc):
-                      'Go to game start';
+                    const desc = move ? 'Go to move #' + move + ' ' + gridLocation(history[move].moveLoc) : 'Go to game start';
                     let selectedMove = history[move].moveLoc === current.moveLoc ? 'selectedMove' : '';
                     return (
                       <li key={move} className={selectedMove}>
