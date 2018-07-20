@@ -7,6 +7,10 @@ ol, ul {
   padding-left: 30px;
 }
 
+ol li {
+  padding-bottom: 10px;
+}
+
 .board-row:after {
   clear: both;
   content: "";
@@ -47,4 +51,8 @@ ol, ul {
 
 .game-info {
   margin-left: 20px;
+}
+
+.selectedMove{
+  font-weight: 800;
 }
